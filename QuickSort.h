@@ -1,12 +1,23 @@
 #pragma once
 
-template<typename T>
-int Partition(T *array, int start, int end) {
-	T pivot = array[end];
+int Partition(unsigned *array, int start, int end) {
+	// 由于我们这里的数据为完全随机的数组，所以这里不需要实现随机快排
+	/*
+	若是要实现随机快排则只需添加如下代码
+		#include <ctime>
+		#include <cstdlib>
+
+		srand(time(0));
+		int index = rand() % (end-start)+start;
+		unsigned temp = array[index];
+		array[index] = array[end];
+		array[end] = temp;
+	*/
+	unsigned pivot = array[end];
 	int move = start;
 	for (int i = start; i < end; i++) {
 		if (array[i] < pivot) {
-			T temp = array[i];
+			unsigned temp = array[i];
 			array[i] = array[move];
 			array[move] = temp;
 			move++;
@@ -18,8 +29,7 @@ int Partition(T *array, int start, int end) {
 	return move;
 }
 
-template<typename T>
-void QuickSort(T *array, int start, int end) {
+void QuickSort(unsigned *array, int start, int end) {
 	if (start < end) {
 		int index = Partition(array, start, end);
 

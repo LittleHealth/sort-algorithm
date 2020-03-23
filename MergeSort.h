@@ -1,11 +1,10 @@
 #pragma once
 
-template<typename T>
-void Merge(T* array, int start, int mid, int end) {
+void Merge(unsigned* array, int start, int mid, int end) {
  	int n1 = mid - start + 1;
 	int n2 = end - mid;
-	T *Left = new T[n1 + 1];
-	T *Right = new T[n2 + 1];
+	unsigned *Left = new unsigned[n1 + 1];
+	unsigned *Right = new unsigned[n2 + 1];
 	for (int i = 0; i < n1; i++)
 		Left[i] = array[start + i];
 	for (int i = 0; i < n2; i++)
@@ -22,8 +21,7 @@ void Merge(T* array, int start, int mid, int end) {
 	delete[] Left; delete[] Right;
 }
 
-template<typename T>
-void MergeSort(T *a, int start, int end) {
+void MergeSort(unsigned *a, int start, int end) {
 	if (start < end) {
 		int mid = (start + end) / 2;
 		MergeSort(a, start, mid);

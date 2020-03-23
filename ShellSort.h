@@ -1,12 +1,22 @@
 #pragma once
-//#include <iostream>
-//using namespace std;
+#include <iostream>
+using namespace std;
 
-template<typename T>
-void ShellSort(T* array, int len) {
-	for (int gap = len / 2; gap > 0; gap /= 2) {
+int gaps[] = { 0, 1, 8, 23, 77, 281, 1073, 4193, 16577, 65921, 262913,
+	1050113, 4197377, 16783361, 67121153};
+
+void ShellSort(unsigned* array, int len) {
+	int index = 0;
+	int gap = len / 4;
+	while (true) {
+		if (gaps[index] > gap) break;
+		index++;
+	}
+
+	while (gap > 0) {
+		//cout << "index=" << index << "  gap=" << gap << endl;
 		for (int i = gap; i < len; i += gap) {
-			T temp = array[i];
+			unsigned temp = array[i];
 			int j = i - gap;
 			while (j >= 0 && temp < array[j]) {
 				array[j + gap] = array[j];
@@ -19,5 +29,7 @@ void ShellSort(T* array, int len) {
 			}
 			cout << endl;*/
 		}
+		index--;
+		gap = gaps[index];
 	}
 }
